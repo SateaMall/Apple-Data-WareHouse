@@ -1,1 +1,76 @@
+/* STOCK_DW */
 
+CREATE TABLE Etat (
+    idEtat NUMBER(10) PRIMARY KEY,
+    etat VARCHAR2(50),
+    durabilite NUMBER(5),
+    politiqueRetour NUMBER(5)
+);
+
+CREATE TABLE Magasin (
+    siret VARCHAR2(20) PRIMARY KEY,
+    ville VARCHAR2(50),
+    codePostal VARCHAR2(10),
+    pays VARCHAR2(50),
+    nbEmployes NUMBER(10),
+    superficie NUMBER(10),
+    heureOuverture NUMBER(2),
+    heureFermeture NUMBER(2),
+    dateOuverture DATE
+);
+
+CREATE TABLE Produit (
+    idProduit VARCHAR2(20) PRIMARY KEY,
+    nom VARCHAR2(50),
+    couleur VARCHAR2(20),
+    generation VARCHAR2(20),
+    type VARCHAR2(50),
+    modele VARCHAR2(50),
+    capaciteStockage NUMBER(10),
+    dateSortie DATE,
+    prixInitial NUMBER(10)
+);
+
+CREATE TABLE Dates (
+    idDate DATE PRIMARY KEY,
+    jour NUMBER(2),
+    mois NUMBER(2),
+    annee NUMBER(4),
+    trimestre NUMBER(2),
+    semaine NUMBER(2),
+    jourFerie CHAR(1) CHECK (jourFerie IN ('Y', 'N')),
+    periodePromotion CHAR(1) CHECK (periodePromotion IN ('Y', 'N')),
+    saison VARCHAR2(20)
+);
+
+
+
+CREATE TABLE Stock (
+    idProduit VARCHAR2(20),
+    siret VARCHAR2(20),
+    idEtat NUMBER(10),
+    idDate DATE,
+    nbStock NUMBER(10),
+    dureeStock NUMBER(5),
+    dateArrive DATE,
+    PRIMARY KEY (idProduit, siret, idEtat, idDate),
+    FOREIGN KEY (idProduit) REFERENCES Produit(idProduit),
+    FOREIGN KEY (siret) REFERENCES Magasin(siret),
+    FOREIGN KEY (idEtat) REFERENCES Etat(idEtat),
+    FOREIGN KEY (idDate) REFERENCES Dates(idDate)
+);
+
+INSERT INTO Magasin (siret, ville, codePostal, pays, nbEmployes, superficie, heureOuverture, heureFermeture, dateOuverture) 
+VALUES ('123456789', 'Paris', '75000', 'France', 25, 1500, 8, 20, TO_DATE('01-01-2010', 'DD-MM-YYYY'));
+
+INSERT INTO Produit (idProduit, nom, couleur, generation, type, modele, capaciteStockage, dateSortie, prixInitial) 
+VALUES ('P1001', 'iPhone 15', 'Noir', '15', 'Smartphone', NULL, 128, TO_DATE('15-09-2023', 'DD-MM-YYYY'), 999);
+
+INSERT INTO Date (idDate, jour, mois, annee, trimestre, semaine, jourFerie, periodePromotion, saison) 
+VALUES (TO_DATE('01-01-2023', 'DD-MM-YYYY'), 1, 1, 2023, 1, 1, 'N', 'N', 'Hiver');
+
+INSERT INTO Etat (idEtat, etat, durabilite, politiqueRetour) 
+VALUES (1, 'Neuf', 36, 12);
+
+INSERT INTO Stock (idProduit, siret, idEtat, idDate, nbStock, dureeStock, dateArrive) 
+VALUES ('P1001', '123456789', 1, TO_DATE('01-01-2023', 'DD-MM-YYYY'), 500, 6, TO_DATE('01-12-2022', 'DD-MM-YYYY'));

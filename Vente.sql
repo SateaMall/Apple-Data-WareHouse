@@ -28,7 +28,7 @@ CREATE TABLE Magasin (
 CREATE TABLE Produit (
     idProduit VARCHAR2(20) PRIMARY KEY,
     nom VARCHAR2(50),
-    couleur VARCHAR2(20),
+    couleur VARCHAR2(20) CHECK (type IN ('rouge', 'blanc', 'noir', 'gris','blue' )),
     generation VARCHAR2(20),
     type VARCHAR2(50) CHECK (type IN ('smartphone', 'ordinateur', 'ecouteurs', 'tablette')),
     modele VARCHAR2(50),

@@ -26,3 +26,18 @@ CREATE TABLE EtatType (
     idType NUMBER,
     type VARCHAR2(50)
 );
+
+CREATE TABLE Stocks (
+    idProduit VARCHAR2(20),
+    siret VARCHAR2(20),
+    idDate NUMBER,
+    idEtat NUMBER,
+    nbStock NUMBER,
+
+    FOREIGN KEY (idProduit) REFERENCES Produit(idProduit),
+    FOREIGN KEY (siret) REFERENCES Magasin(siret),
+    FOREIGN KEY (idDate) REFERENCES Dates(date),
+    FOREIGN KEY (idEtat) REFERENCES EtatType(idEtat),
+
+    PRIMARY KEY (idProduit, siret, idDate, idEtat)
+);

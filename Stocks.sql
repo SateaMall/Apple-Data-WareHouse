@@ -30,7 +30,7 @@ CREATE TABLE EtatType (
 
 CREATE TABLE Stocks (
     idProduit VARCHAR2(20),
-    siret VARCHAR2(20),
+    siret NUMBER(10),
     idDate NUMBER(10),
     idEtat NUMBER(10),
     idType NUMBER(10),

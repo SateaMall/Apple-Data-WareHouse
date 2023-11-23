@@ -1,5 +1,3 @@
-        /****************************** VENTES ********************************/
-
 CREATE TABLE Employe (
     idEmploye NUMBER(10) PRIMARY KEY, 
     nom VARCHAR2(50),
@@ -105,6 +103,3 @@ VALUES (1001, 'Martin', 'Lucie', TO_DATE('15-03-1985', 'DD-MM-YYYY'), 'F', 'Inge
 
 INSERT INTO Vente (idVente, idProduit, siret, idEmploye, idClient, idDate, prixTTC, prixHT, note) 
 VALUES ('10255525', 'PRD123', 123456789, 123, 1001, 18012022, 1099.99, 916.66, 5);
-
-
-        /****************************** STOCK ********************************/

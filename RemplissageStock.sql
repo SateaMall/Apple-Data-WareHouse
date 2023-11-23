@@ -76,7 +76,7 @@ INSERT INTO Produit VALUES ('IPN006', 'iPhone 11', 'noir', '11', 'smartphone', '
 
 -- Inserts pour les Mac
 INSERT INTO Produit VALUES ('MAC001', 'MacBook Pro', 'gris', '2021', 'ordinateur', 'Pro 13"', 256, TO_DATE('18-11-2021', 'DD-MM-YYYY'), 1299, 24, 'macOS Monterey');
-INSERT INTO Produit VALUES ('MAC002', 'MacBook Air', 'argent', '2020', 'ordinateur', 'Air', 512, TO_DATE('15-07-2020', 'DD-MM-YYYY'), 999, 24, 'macOS Big Sur');
+INSERT INTO Produit VALUES ('MAC002', 'MacBook Air', 'rouge', '2020', 'ordinateur', 'Air', 512, TO_DATE('15-07-2020', 'DD-MM-YYYY'), 999, 24, 'macOS Big Sur');
 INSERT INTO Produit VALUES ('MAC003', 'MacBook Pro', 'noir', '2021', 'ordinateur', 'Pro 16"', 1024, TO_DATE('18-11-2021', 'DD-MM-YYYY'), 2499, 24, 'macOS Monterey');
 
 -- Inserts pour les écouteurs
@@ -85,8 +85,8 @@ INSERT INTO Produit VALUES ('EAR002', 'AirPods', 'blanc', '2', 'ecouteurs', 'Sta
 INSERT INTO Produit VALUES ('EAR003', 'AirPods Max', 'blanc', '1', 'ecouteurs', 'Max', NULL, TO_DATE('15-12-2020', 'DD-MM-YYYY'), 549, 12, '1ère Génération');
 
 -- Inserts pour les iPad
-INSERT INTO Produit VALUES ('IPD001', 'iPad Pro', 'argent', '2021', 'tablette', 'Pro 12.9"', 128, TO_DATE('21-05-2021', 'DD-MM-YYYY'), 1099, 24, 'iOS 14');
-INSERT INTO Produit VALUES ('IPD002', 'iPad Air', 'rose', '2020', 'tablette', 'Air', 256, TO_DATE('23-10-2020', 'DD-MM-YYYY'), 749, 24, 'iOS 14');
+INSERT INTO Produit VALUES ('IPD001', 'iPad Pro', 'blue', '2021', 'tablette', 'Pro 12.9"', 128, TO_DATE('21-05-2021', 'DD-MM-YYYY'), 1099, 24, 'iOS 14');
+INSERT INTO Produit VALUES ('IPD002', 'iPad Air', 'rouge', '2020', 'tablette', 'Air', 256, TO_DATE('23-10-2020', 'DD-MM-YYYY'), 749, 24, 'iOS 14');
 INSERT INTO Produit VALUES ('IPD003', 'iPad Mini', 'gris', '2021', 'tablette', 'Mini', 64, TO_DATE('24-09-2021', 'DD-MM-YYYY'), 499, 24, 'iOS 15');
 
 ------- Dates -------

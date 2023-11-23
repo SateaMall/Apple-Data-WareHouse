@@ -38,7 +38,6 @@ CREATE TABLE Stocks (
     FOREIGN KEY (idProduit) REFERENCES Produit(idProduit),
     FOREIGN KEY (siret) REFERENCES Magasin(siret),
     FOREIGN KEY (idDate) REFERENCES Dates(idDate),
-    FOREIGN KEY (idEtat) REFERENCES EtatType(idEtat),
-    FOREIGN KEY (idType) REFERENCES EtatType(idType),
+    FOREIGN KEY (idEtat, idType) REFERENCES EtatType(idEtat, idType),
     PRIMARY KEY (idProduit, siret, idDate, idEtat,idType)
 );

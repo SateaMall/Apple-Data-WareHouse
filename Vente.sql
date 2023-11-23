@@ -57,6 +57,7 @@ CREATE TABLE Client (
     idClient NUMBER(10) PRIMARY KEY,
     nom VARCHAR2(50),
     prenom VARCHAR2(50),
+    age NUMBER(3),
     dateNaissance DATE,
     sexe CHAR(1) CHECK (sexe IN ('H', 'F', 'N')), 
     categorieProfessionnelle VARCHAR2(50),

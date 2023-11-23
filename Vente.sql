@@ -79,7 +79,7 @@ CREATE TABLE Vente (
     prixTTC NUMBER(10, 2),
     prixHT NUMBER(10, 2),
     note NUMBER(1, 0) CHECK (note BETWEEN 0 AND 5 OR note IS NULL),
-    PRIMARY KEY (idProduit, siret, idEmploye, idClient, IdDate),
+    PRIMARY KEY (idProduit, siret, idEmploye, idClient, IdDate, idVente),
     FOREIGN KEY (idProduit) REFERENCES Produit(idProduit),
     FOREIGN KEY (siret) REFERENCES Magasin(siret),
     FOREIGN KEY (idEmploye) REFERENCES Employe(idEmploye),

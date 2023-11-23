@@ -30,7 +30,7 @@ CREATE TABLE Produit (
     nom VARCHAR2(50),
     couleur VARCHAR2(20),
     generation VARCHAR2(20),
-    type VARCHAR2(50),
+    type VARCHAR2(50) CHECK (type IN ('smartphone', 'ordinateur', 'ecouteurs', 'tablette')),
     modele VARCHAR2(50),
     capaciteStockage NUMBER(10),
     dateSortie DATE,

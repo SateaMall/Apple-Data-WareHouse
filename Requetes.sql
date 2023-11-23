@@ -96,6 +96,77 @@ ORDER BY
     C.departement, 
     V.note;
 
+SELECT
+   COUNT(*) AS NbrTotaleVente,
+   M.siret,   D.annee,
+   M.superficie,
+   M.NbEmploye
+  
+FROM
+   Vente V
+JOIN
+   Magasin M ON V.siret = M.siret
+JOIN
+   Dates D ON S.idDate = D.idDate
+GROUP BY
+   M.siret,
+   D.annee;
+ORDER DESC
+	NbrTotalVente;
+
+SELECT
+   COUNT(*) AS NbrTotaleVente,
+   M.pays,
+   E.salaire
+   
+FROM
+   Vente V
+JOIN
+   Employe E ON V.idEmploye = E.idEmploye
+JOIN
+   Magasin M ON V.siret = M.siret
+JOIN
+   Dates D ON S.idDate = D.idDate
+WHERE
+	(E.role=’MANAGER’ OR E.role=’POLYVALENT’)
+GROUP BY
+   M.pays,
+   E.salaire;
+
+SELECT s.idProduit, s.siret, AVG(s.nbStock) AS MoyenneStocks
+FROM Stocks s
+JOIN Dates d ON s.idDate = d.idDate
+WHERE d.periodePromotion = 'Y'
+GROUP BY s.idProduit, s.siret;
+
+
+SELECT s.idProduit, s.siret, d.mois, AVG(s.nbStock) AS MoyenneStocks
+FROM Stocks s
+JOIN Dates d ON s.idDate = d.idDate
+JOIN EtatType et ON s.idEtat = et.idEtat
+WHERE et.etat = 'neuf'
+GROUP BY s.idProduit, s.siret, d.mois;
+
+SELECT
+   COUNT(*) AS NbrStock,
+   P.nom AS ProductName,
+   M.siret AS StoreID,
+   D.annee AS Annee
+   
+FROM
+   Stock S
+JOIN
+   Produit P ON S.idProduit = P.idProduit
+JOIN
+   Magasin M ON S.siret = M.siret
+JOIN
+   Dates D ON S.idDate = D.idDate
+GROUP BY
+   P.nom,
+   M.siret,
+   D.annee
+;
+
 SELECT 
     COALESCE(TO_CHAR(D.annee), 'Toutes les années') AS Annee,
     COALESCE(TO_CHAR(M.siret), 'Tous les magasins') AS Magasin,
@@ -133,3 +204,4 @@ ORDER BY
     D.annee, 
     M.siret, 
     P.type;
+    

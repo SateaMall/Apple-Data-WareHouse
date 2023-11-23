@@ -39,4 +39,24 @@ ORDER BY
     D.annee,
     TrancheAge;
 
-
+SELECT 
+    P.nom,
+    M.siret,
+    D.annee,
+    COUNT(*) AS Ventes
+FROM 
+    Vente V
+JOIN 
+    Produit P ON V.idProduit = P.idProduit
+JOIN 
+    Magasin M ON V.siret = M.siret
+JOIN 
+    Dates D ON V.idDate = D.idDate
+GROUP BY 
+    P.nom, 
+    M.siret, 
+    D.annee
+ORDER BY 
+    P.nom, 
+    M.siret, 
+    D.annee;

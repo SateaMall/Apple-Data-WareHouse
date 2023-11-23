@@ -37,7 +37,7 @@ CREATE TABLE Stocks (
     nbStock NUMBER(10),
     FOREIGN KEY (idProduit) REFERENCES Produit(idProduit),
     FOREIGN KEY (siret) REFERENCES Magasin(siret),
-    FOREIGN KEY (idDate) REFERENCES Dates(date),
+    FOREIGN KEY (idDate) REFERENCES Dates(dates),
     FOREIGN KEY (idEtat) REFERENCES EtatType(idEtat),
     FOREIGN KEY (idType) REFERENCES EtatType(idType),
     PRIMARY KEY (idProduit, siret, idDate, idEtat,idType)

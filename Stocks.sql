@@ -21,23 +21,24 @@ SELECT *
 FROM Dates;
 
 CREATE TABLE EtatType (
-    idEtat NUMBER PRIMARY KEY,
+    idEtat  NUMBER(10) ,
     etat VARCHAR2(50) CHECK (etat IN ('neuf', 'reconditionne')),
-    idType NUMBER,
-    type VARCHAR2(50) CHECK (type IN ('smartphone', 'ordinateur', 'écouteurs', 'tablette'))
+    idType  NUMBER(10),
+    type VARCHAR2(50) CHECK (type IN ('smartphone', 'ordinateur', 'ecouteurs', 'tablette')),
+    PRIMARY KEY(idEtat, idType)
 );
 
 CREATE TABLE Stocks (
     idProduit VARCHAR2(20),
     siret VARCHAR2(20),
-    idDate NUMBER,
-    idEtat NUMBER,
-    nbStock NUMBER,
-
+    idDate NUMBER(10),
+    idEtat NUMBER(10),
+    idType NUMBER(10),
+    nbStock NUMBER(10),
     FOREIGN KEY (idProduit) REFERENCES Produit(idProduit),
     FOREIGN KEY (siret) REFERENCES Magasin(siret),
     FOREIGN KEY (idDate) REFERENCES Dates(date),
     FOREIGN KEY (idEtat) REFERENCES EtatType(idEtat),
-
-    PRIMARY KEY (idProduit, siret, idDate, idEtat)
+    FOREIGN KEY (idType) REFERENCES EtatType(idType),
+    PRIMARY KEY (idProduit, siret, idDate, idEtat,idType)
 );

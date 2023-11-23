@@ -85,21 +85,3 @@ CREATE TABLE Vente (
     FOREIGN KEY (idClient) REFERENCES Client(idClient),
     FOREIGN KEY (idDate) REFERENCES Dates(idDate)
 );
-                        /**** Test Valeurs Ventes ****/
-INSERT INTO Employe (idEmploye, nom, prenom, role, dateEmbauche, salaire, formation, heureContrat, email, dateNaissance) 
-VALUES (123, 'Dupont', 'Jean', 'CHEF', TO_DATE('01-06-2015', 'DD-MM-YYYY'), 3500.00, 5, 35, 'jean.dupont@entreprise.com', TO_DATE('15-08-1980', 'DD-MM-YYYY'));
-
-INSERT INTO Magasin (siret, ville, codePostal, pays, nbEmployes, superficie, heureOuverture, heureFermeture, dateOuverture) 
-VALUES (123456789, 'Paris', '75000', 'France', 25, 500.0, 9, 18, TO_DATE('01-01-2010', 'DD-MM-YYYY'));
-
-INSERT INTO Produit (idProduit, nom, couleur, generation, type, modele, capaciteStockage, dateSortie, prixInitial, garantie, version) 
-VALUES ('PRD123', 'iPhone 13', 'Noir', '13', 'Smartphone', 'Pro', 128, TO_DATE('20-09-2021', 'DD-MM-YYYY'), 999, 2, 'iOS 15');
-
-INSERT INTO Dates (idDate,dates, jourSemaine, semaine, mois, trimestre, annee, jourFerie, periodePromotion, saison) 
-VALUES (18012022, TO_DATE('01-01-2023', 'DD-MM-YYYY'), 7, 1, 1, 1, 2023, 'N', 'N', 'Hiver');
-
-INSERT INTO Client (idClient, nom, prenom, dateNaissance, sexe, categorieProfessionnelle, revenuAnnuel, email, villeResidence, pays, departement, estEmploye) 
-VALUES (1001, 'Martin', 'Lucie', TO_DATE('15-03-1985', 'DD-MM-YYYY'), 'F', 'Ingenieur', 60000, 'lucie.martin@email.com', 'Lyon', 'France', '69', 'N');
-
-INSERT INTO Vente (idVente, idProduit, siret, idEmploye, idClient, idDate, prixTTC, prixHT, note) 
-VALUES ('10255525', 'PRD123', 123456789, 123, 1001, 18012022, 1099.99, 916.66, 5);

@@ -22,9 +22,9 @@ FROM Dates;
 
 CREATE TABLE EtatType (
     idEtat NUMBER PRIMARY KEY,
-    etat VARCHAR2(50) UNIQUE,
+    etat VARCHAR2(50) CHECK (etat IN ('neuf', 'reconditionne')),
     idType NUMBER,
-    type VARCHAR2(50)
+    type VARCHAR2(50) CHECK (type IN ('smartphone', 'ordinateur', 'écouteurs', 'tablette'))
 );
 
 CREATE TABLE Stocks (

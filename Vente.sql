@@ -70,7 +70,7 @@ CREATE TABLE Client (
 );
 
 CREATE TABLE Vente (
-    idVente NUMVER(10), 
+    idVente NUMBER(10), 
     idProduit VARCHAR2(20),
     siret NUMBER(10),
     idEmploye NUMBER(10),

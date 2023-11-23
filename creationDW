@@ -2,10 +2,10 @@
 /****************************** VENTES ********************************/
 
 CREATE TABLE Employe (
-    idEmploye VARCHAR2(20) PRIMARY KEY,  //id numbers or varchar?
+    idEmploye NUMBER(10) PRIMARY KEY, 
     nom VARCHAR2(50),
     prenom VARCHAR2(50),
-    role VARCHAR2(50), 
+    role VARCHAR2(50) CHECK (role IN ('CHEF', 'MANAGER', 'POLYVALENT')),
     dateEmbauche DATE,
     salaire NUMBER(10, 2),
     formation NUMBER(2),
@@ -16,13 +16,13 @@ CREATE TABLE Employe (
 
 
 CREATE TABLE Magasin (
-    siret VARCHAR2(20) PRIMARY KEY,
+    siret NUMBER(10) PRIMARY KEY,
     ville VARCHAR2(50),
     codePostal VARCHAR2(10),
     pays VARCHAR2(50),
     nbEmployes NUMBER(10),
     superficie NUMBER(12,1),
-    heureOuverture NUMBER(2), // le typage depend on cherche quoi exactement, si on veut un truc qui affiche les minutes on ne pourrait plus faire une requete qui affiche la moyenne des horaires ouverture 
+    heureOuverture NUMBER(2),  
     heureFermeture NUMBER(2),
     dateOuverture DATE
 );
@@ -44,7 +44,8 @@ CREATE TABLE Produit (
 
 
 CREATE TABLE Dates (
-    date DATE PRIMARY KEY,
+    idDate NUMBER(8) PRIMARY KEY,
+    dates DATE UNIQUE,
     jourSemaine NUMBER(1),
     semaine NUMBER(2),
     mois NUMBER(2),
@@ -56,11 +57,11 @@ CREATE TABLE Dates (
 );
 
 CREATE TABLE Client (
-    idClient VARCHAR2(20) PRIMARY KEY,
+    idClient NUMBER(10) PRIMARY KEY,
     nom VARCHAR2(50),
     prenom VARCHAR2(50),
     dateNaissance DATE,
-    sexe CHAR(1) CHECK (sexe IN ('H', 'F')), // un troisième sexe?
+    sexe CHAR(1) CHECK (sexe IN ('H', 'F', 'N')), 
     categorieProfessionnelle VARCHAR2(50),
     revenuAnnuel NUMBER(15, 0),
     email VARCHAR2(100),
@@ -72,38 +73,38 @@ CREATE TABLE Client (
 
 CREATE TABLE Vente (
     idProduit VARCHAR2(20),
-    siret VARCHAR2(20),
-    idEmploye VARCHAR2(20),
-    idClient VARCHAR2(20),
-    Dates DATE,
+    siret NUMBER(10),
+    idEmploye NUMBER(10),
+    idClient NUMBER(10),
+    idDate NUMBER(8),
     prixTTC NUMBER(10, 2),
     prixHT NUMBER(10, 2),
     note NUMBER(1, 0) CHECK (note BETWEEN 0 AND 5 OR note IS NULL),
-    PRIMARY KEY (idProduit, siret, idEmploye, idClient, Dates),
+    PRIMARY KEY (idProduit, siret, idEmploye, idClient, IdDate),
     FOREIGN KEY (idProduit) REFERENCES Produit(idProduit),
     FOREIGN KEY (siret) REFERENCES Magasin(siret),
     FOREIGN KEY (idEmploye) REFERENCES Employe(idEmploye),
     FOREIGN KEY (idClient) REFERENCES Client(idClient),
-    FOREIGN KEY (Dates) REFERENCES Dates(date)
+    FOREIGN KEY (idDate) REFERENCES Dates(idDate)
 );
 
 INSERT INTO Employe (idEmploye, nom, prenom, role, dateEmbauche, salaire, formation, heureContrat, email, dateNaissance) 
-VALUES ('EMP123', 'Dupont', 'Jean', 'Manager', TO_DATE('01-06-2015', 'DD-MM-YYYY'), 3500.00, 5, 35, 'jean.dupont@entreprise.com', TO_DATE('15-08-1980', 'DD-MM-YYYY'));
+VALUES (123, 'Dupont', 'Jean', 'CHEF', TO_DATE('01-06-2015', 'DD-MM-YYYY'), 3500.00, 5, 35, 'jean.dupont@entreprise.com', TO_DATE('15-08-1980', 'DD-MM-YYYY'));
 
 INSERT INTO Magasin (siret, ville, codePostal, pays, nbEmployes, superficie, heureOuverture, heureFermeture, dateOuverture) 
-VALUES ('12345678901234', 'Paris', '75000', 'France', 25, 500.0, 9, 18, TO_DATE('01-01-2010', 'DD-MM-YYYY'));
+VALUES (123456789, 'Paris', '75000', 'France', 25, 500.0, 9, 18, TO_DATE('01-01-2010', 'DD-MM-YYYY'));
 
 INSERT INTO Produit (idProduit, nom, couleur, generation, type, modele, capaciteStockage, dateSortie, prixInitial, garantie, version) 
 VALUES ('PRD123', 'iPhone 13', 'Noir', '13', 'Smartphone', 'Pro', 128, TO_DATE('20-09-2021', 'DD-MM-YYYY'), 999, 2, 'iOS 15');
 
-INSERT INTO Dates (date, jourSemaine, semaine, mois, trimestre, annee, jourFerie, periodePromotion, saison) 
-VALUES (TO_DATE('01-01-2023', 'DD-MM-YYYY'), 7, 1, 1, 1, 2023, 'N', 'N', 'Hiver');
+INSERT INTO Dates (idDate,dates, jourSemaine, semaine, mois, trimestre, annee, jourFerie, periodePromotion, saison) 
+VALUES (18012022, TO_DATE('01-01-2023', 'DD-MM-YYYY'), 7, 1, 1, 1, 2023, 'N', 'N', 'Hiver');
 
 INSERT INTO Client (idClient, nom, prenom, dateNaissance, sexe, categorieProfessionnelle, revenuAnnuel, email, villeResidence, pays, departement, estEmploye) 
-VALUES ('CLT001', 'Martin', 'Lucie', TO_DATE('15-03-1985', 'DD-MM-YYYY'), 'F', 'Ingenieur', 60000, 'lucie.martin@email.com', 'Lyon', 'France', '69', 'N');
+VALUES (1001, 'Martin', 'Lucie', TO_DATE('15-03-1985', 'DD-MM-YYYY'), 'F', 'Ingenieur', 60000, 'lucie.martin@email.com', 'Lyon', 'France', '69', 'N');
 
-INSERT INTO Vente (idProduit, siret, idEmploye, idClient, Dates, prixTTC, prixHT, note) 
-VALUES ('PRD123', '12345678901234', 'EMP123', 'CLT001', TO_DATE('01-01-2023', 'DD-MM-YYYY'), 1099.99, 916.66, 5);
+INSERT INTO Vente (idProduit, siret, idEmploye, idClient, idDate, prixTTC, prixHT, note) 
+VALUES ('PRD123', 123456789, 123, 1001, 18012022, 1099.99, 916.66, 5);
 /****************************** STOCK ********************************/
 CREATE TABLE Etat (
     idEtat NUMBER(10) PRIMARY KEY,

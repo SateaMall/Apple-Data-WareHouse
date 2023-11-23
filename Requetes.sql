@@ -60,3 +60,19 @@ ORDER BY
     P.nom, 
     M.siret, 
     D.annee;
+
+SELECT 
+    P.nom,
+    COUNT(*) AS TotalPurchases
+FROM 
+    Vente V
+JOIN 
+    Client C ON V.idClient = C.idClient
+JOIN 
+    Produit P ON V.idProduit = P.idProduit
+WHERE 
+    C.estEmploye = 'Y'
+GROUP BY 
+    P.nom
+ORDER BY 
+    TotalPurchases DESC;

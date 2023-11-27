@@ -58,7 +58,7 @@ EXCEPTION
 END;
 /
 
-promt "creation des tables"
+prompt "creation des tables"
 
 
 CREATE TABLE Employe (

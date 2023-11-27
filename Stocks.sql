@@ -1,3 +1,27 @@
+prompt "Suppression des tables Stocks et EtatType"
+
+BEGIN
+EXECUTE IMMEDIATE 'DROP TABLE Stocks';
+EXCEPTION
+ WHEN OTHERS THEN
+	IF SQLCODE != -942 THEN
+	RAISE;
+	END IF;
+END;
+/
+
+BEGIN
+EXECUTE IMMEDIATE 'DROP TABLE EtatType';
+EXCEPTION
+ WHEN OTHERS THEN
+	IF SQLCODE != -942 THEN
+	RAISE;
+	END IF;
+END;
+/
+prompt "Creation des tables et vues"
+
+
 CREATE OR REPLACE VIEW ProduitStocks AS
 SELECT 
     idProduit, 

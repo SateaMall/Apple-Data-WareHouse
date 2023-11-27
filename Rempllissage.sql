@@ -1,3 +1,4 @@
+------------------------------------------ VENTES ------------------------------------------------
 ------- Client -------
 INSERT INTO Client VALUES (1001, 'Jean', 'Martin', 45, TO_DATE('01-03-1977', 'DD-MM-YYYY'), 'H', 'Ingenieur', 55000, 'jean.martin@email.com', 'Paris', 'France', '75', 'N');
 INSERT INTO Client VALUES (1002, 'Alice', 'Durand', 38, TO_DATE('15-07-1984', 'DD-MM-YYYY'), 'F', 'Enseignante', 48000, 'alice.durand@email.com', 'Lyon', 'France', '69', 'N');
@@ -236,4 +237,53 @@ INSERT INTO Vente VALUES (67, 'IPN005', 10005, 3226, 1005, 15122022, 1200.00, 10
 INSERT INTO Vente VALUES (68, 'IPN006', 10006, 3227, 1006, 15052022, 1000.00, 840.00, 4);
 INSERT INTO Vente VALUES (69, 'MAC001', 10007, 3228, 1007, 22122021, 1300.00, 1092.00, 5);
 INSERT INTO Vente VALUES (70, 'MAC002', 10008, 3229, 1008, 16052022, 1000.00, 840.00, 4);
+
+------------------------------------------ STOCKS ------------------------------------------------
+------- Etat -------
+-- Combinaisons pour 'neuf'
+INSERT INTO EtatType (idEtat, etat, idType, type) VALUES (1, 'neuf', 101, 'smartphone');
+INSERT INTO EtatType (idEtat, etat, idType, type) VALUES (1, 'neuf', 102, 'ordinateur');
+INSERT INTO EtatType (idEtat, etat, idType, type) VALUES (1, 'neuf', 103, 'ecouteurs');
+INSERT INTO EtatType (idEtat, etat, idType, type) VALUES (1, 'neuf', 104, 'tablette');
+
+-- Combinaisons pour 'reconditionne'
+INSERT INTO EtatType (idEtat, etat, idType, type) VALUES (2, 'reconditionne', 101, 'smartphone');
+INSERT INTO EtatType (idEtat, etat, idType, type) VALUES (2, 'reconditionne', 102, 'ordinateur');
+INSERT INTO EtatType (idEtat, etat, idType, type) VALUES (2, 'reconditionne', 103, 'ecouteurs');
+INSERT INTO EtatType (idEtat, etat, idType, type) VALUES (2, 'reconditionne', 104, 'tablette');
+
+
+
+------- Stocks -------
+
+INSERT INTO Stocks VALUES ('IPN001', 10001, 24052022, 1, 101, 100);
+INSERT INTO Stocks VALUES ('IPN002', 10002, 24012023, 1, 101, 90);
+INSERT INTO Stocks VALUES ('IPN003', 10003, 22122022, 2, 101, 1);
+INSERT INTO Stocks VALUES ('IPN004', 10004, 24042022, 2, 101, 70);
+INSERT INTO Stocks VALUES ('IPN005', 10005, 15122022, 1, 101, 60);
+INSERT INTO Stocks VALUES ('IPN006', 10006, 15052022, 1, 101, 50);
+INSERT INTO Stocks VALUES ('MAC001', 10007, 22122021, 1, 102, 40);
+INSERT INTO Stocks VALUES ('MAC002', 10008, 16052022, 2, 102, 30);
+INSERT INTO Stocks VALUES ('MAC003', 10009, 22102022, 2, 102, 20);
+INSERT INTO Stocks VALUES ('EAR001', 20001, 11122022, 1, 103, 110);
+INSERT INTO Stocks VALUES ('EAR002', 20002, 25012022, 2, 103, 4);
+INSERT INTO Stocks VALUES ('EAR003', 20003, 25122022, 1, 103, 90);
+INSERT INTO Stocks VALUES ('IPD001', 20004, 15102022, 2, 104, 85);
+INSERT INTO Stocks VALUES ('IPD002', 20005, 12112022, 1, 104, 80);
+INSERT INTO Stocks VALUES ('IPD003', 20006, 19072022, 2, 104, 2);
+INSERT INTO Stocks VALUES ('IPN001', 20007, 12062023, 1, 101, 70);
+INSERT INTO Stocks VALUES ('IPN002', 20008, 19072023, 2, 101, 65);
+INSERT INTO Stocks VALUES ('IPN003', 20009, 19122023, 1, 101, 60);
+INSERT INTO Stocks VALUES ('IPN004', 30001, 22022023, 2, 101, 55);
+INSERT INTO Stocks VALUES ('IPN005', 30002, 17022023, 1, 101, 50);
+INSERT INTO Stocks VALUES ('IPN006', 30003, 17112023, 2, 101, 0);
+INSERT INTO Stocks VALUES ('MAC001', 30004, 22102023, 1, 102, 40);
+INSERT INTO Stocks VALUES ('MAC002', 30005, 01122023, 2, 102, 35);
+INSERT INTO Stocks VALUES ('MAC003', 30006, 02122023, 1, 102, 30);
+INSERT INTO Stocks VALUES ('EAR001', 30007, 22042023, 2, 103, 70);
+INSERT INTO Stocks VALUES ('EAR002', 30008, 04032023, 1, 103, 65);
+INSERT INTO Stocks VALUES ('EAR003', 30009, 09012023, 2, 103, 60);
+INSERT INTO Stocks VALUES ('IPD001', 40001, 12032023, 1, 104, 55);
+INSERT INTO Stocks VALUES ('IPD002', 40002, 05092023, 2, 104, 50);
+INSERT INTO Stocks VALUES ('IPD003', 40003, 10012023, 1, 104, 0);
 

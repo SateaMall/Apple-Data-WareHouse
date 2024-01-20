@@ -1,5 +1,5 @@
 # AppleDW
-Projet d’entrepôt de données (Data WareHouse) l'entreprise Appel. 
+Projet d’entrepôt de données (Data WareHouse) l'entreprise Appel en Oracle. 
 
 Le schèma pour la gestion des ventes:
 
